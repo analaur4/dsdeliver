@@ -1,12 +1,17 @@
 package com.devsuperior.dsdeliver.service;
 
 import com.devsuperior.dsdeliver.dto.OrderDTO;
+import com.devsuperior.dsdeliver.dto.ProductDTO;
 import com.devsuperior.dsdeliver.entity.Order;
+import com.devsuperior.dsdeliver.entity.OrderStatus;
+import com.devsuperior.dsdeliver.entity.Product;
 import com.devsuperior.dsdeliver.repository.OrderRepository;
+import com.devsuperior.dsdeliver.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,9 +21,24 @@ public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     @Transactional(readOnly = true)
     public List<OrderDTO> findAll() {
         List<Order> orderList = orderRepository.findOrderWithProducts();
         return orderList.stream().map(ord -> new OrderDTO(ord)).collect(Collectors.toList());
+    }
+
+    @Transactional
+    public OrderDTO insert(OrderDTO orderDTO) {
+        Order order = new Order(null, orderDTO.getAddress(), orderDTO.getLatitude(), orderDTO.getLongitude(),
+                Instant.now(), OrderStatus.PENDING);
+        for(ProductDTO p : orderDTO.getProductList()) {
+            Product product = productRepository.getOne(p.getId());
+            order.getProducts().add(product);
+        }
+        order = orderRepository.save(order);
+        return new OrderDTO(order);
     }
 }

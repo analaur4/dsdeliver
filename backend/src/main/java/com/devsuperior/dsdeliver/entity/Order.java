@@ -7,6 +7,7 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
@@ -46,4 +47,13 @@ public class Order {
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     @Getter
     private Set<Product> products = new HashSet<>();
+
+    public Order(Long id, String address, Double latitude, Double longitude, Instant moment, OrderStatus status) {
+        this.id = id;
+        this.address = address;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.moment = moment;
+        this.status = status;
+    }
 }
