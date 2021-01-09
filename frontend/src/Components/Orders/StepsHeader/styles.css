@@ -41,3 +41,16 @@
     color: var(--primary-color);
     margin-right: 10px;
 }
+
+@media only screen and (max-width: 768px) {
+    .orders-steps-content {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    width: 90%;
+    }
+
+    .steps-items {
+    padding: 0
+    }
+}
