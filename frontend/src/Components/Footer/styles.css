@@ -1,17 +1,17 @@
 .main-footer {
     background-color: var(--dark-color);
-    font-weight: normal;
-    font-size: 0.75rem;
-    line-height: 16px;
-    text-align: center;
     color: #FFF;
+    font-size: 0.75rem;
+    font-weight: normal;
+    line-height: 16px;
     padding: 10px 0;
+    text-align: center;
 }
 
 .footer-icons {
-    margin-top: 10px;
     display: flex;
     justify-content: center;
+    margin-top: 10px;
 }
 
 .footer-icons > * {
