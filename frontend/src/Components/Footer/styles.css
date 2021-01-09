@@ -1,0 +1,19 @@
+.main-footer {
+    background-color: var(--dark-color);
+    font-weight: normal;
+    font-size: 0.75rem;
+    line-height: 16px;
+    text-align: center;
+    color: #FFF;
+    padding: 10px 0;
+}
+
+.footer-icons {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-icons > * {
+    margin-right: 5px;
+}

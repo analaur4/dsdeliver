@@ -1,6 +1,6 @@
 .main-navbar {
     align-items: center;
-    background-color: #DA5C5C;
+    background-color: var(--primary-color);
     display: flex;
     height: 70px;
     padding-left: 45px;
