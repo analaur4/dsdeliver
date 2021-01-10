@@ -34,7 +34,7 @@ public class OrderService {
     public OrderDTO insert(OrderDTO orderDTO) {
         Order order = new Order(null, orderDTO.getAddress(), orderDTO.getLatitude(), orderDTO.getLongitude(),
                 Instant.now(), OrderStatus.PENDING);
-        for(ProductDTO p : orderDTO.getProductList()) {
+        for(ProductDTO p : orderDTO.getProducts()) {
             Product product = productRepository.getOne(p.getId());
             order.getProducts().add(product);
         }
