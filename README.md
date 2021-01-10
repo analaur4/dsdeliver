@@ -7,6 +7,6 @@ Para rodar local:
 Abrirá o novagador em: http://localhost:3000
 
 ## Backend
-Alterar o arquivo aplication.properties para:
+Alterar a primeira linha do arquivo **aplication.properties** para:
 `spring.profiles.active=test`
 Em seguida só iniciar a aplicação na IDE de preferência.
