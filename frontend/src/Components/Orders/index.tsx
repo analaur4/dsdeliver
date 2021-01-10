@@ -9,18 +9,21 @@ import OrderLocation from './OrderLocation/index';
 import { OrderLocationData } from '../../Models/OrderLocationData';
 import OrderSummary from './OrderSummary/index';
 import { checkIsSelected } from './helpers';
+import Loader from '../Loader/index';
 
 function Orders() {
     const [products, setProducts] = useState<Product[]>([]);
     const [selectedProducts, setSelectedProducts] = useState<Product[]>([]);
     const [orderLocation, setOrderLocation] = useState<OrderLocationData>();
+    const [isLoading, setIsLoading] = useState(true);
 
     const totalPrice = selectedProducts.reduce((sum, item) => {
         return sum + item.price;
     }, 0);
 
     useEffect(() => {
-        fetchProducts().then(res => setProducts(res.data))
+        fetchProducts().then(res =>setProducts(res.data))
+        .then(() => setIsLoading(loading => !loading))
         .catch(error => console.log(error))
     }, []);
 
@@ -54,6 +57,7 @@ function Orders() {
 
     return (
         <div className="orders-container">
+            { isLoading ? <Loader /> : null }
             <StepsHeader />
             <ProductList products={ products } onSelectProduct={ handleSelectProduct } selectedProducts={ selectedProducts } />
             <OrderLocation onChangeLocation={ location => setOrderLocation(location) } />
