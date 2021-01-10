@@ -20,7 +20,7 @@ public class OrderDTO {
     private Double longitude;
     private Instant moment;
     private OrderStatus status;
-    private List<ProductDTO> productList = new ArrayList<>();
+    private List<ProductDTO> products = new ArrayList<>();
 
     public OrderDTO(Order entity) {
         id = entity.getId();
@@ -29,6 +29,6 @@ public class OrderDTO {
         longitude = entity.getLongitude();
         moment = entity.getMoment();
         status = entity.getStatus();
-        productList = entity.getProducts().stream().map(prd -> new ProductDTO(prd)).collect(Collectors.toList());
+        products = entity.getProducts().stream().map(prd -> new ProductDTO(prd)).collect(Collectors.toList());
     }
 }

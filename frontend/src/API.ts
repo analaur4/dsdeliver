@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { Order } from './Models/Order';
 
-const API_URL = 'http://dsdeliver-ana.herokuapp.com';
+const API_URL = 'https://dsdeliver-ana.herokuapp.com';
 const mapboxToken = process.env.REACT_APP_ACCESS_TOKEN_MAP_BOX;
 
 export function fetchProducts() {
@@ -9,4 +10,8 @@ export function fetchProducts() {
 
 export function fetchLocalMapBox(local: string) {
     return axios(`https://api.mapbox.com/geocoding/v5/mapbox.places/${local}.json?access_token=${mapboxToken}`)
+}
+
+export function saveOrder(payload: Order) {
+    return axios.post(`${API_URL}/orders`, payload);
 }
